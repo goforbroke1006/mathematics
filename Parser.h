@@ -6,6 +6,7 @@
 #define MATHEMATICS_PARSER_H
 
 #include <cmath>
+#include "Node.h"
 
 bool is_number(const std::string &s) {
     std::string::const_iterator it = s.begin();
