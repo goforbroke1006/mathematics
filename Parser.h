@@ -5,10 +5,18 @@
 #ifndef MATHEMATICS_PARSER_H
 #define MATHEMATICS_PARSER_H
 
+#include <cmath>
+
 bool is_number(const std::string &s) {
     std::string::const_iterator it = s.begin();
     while (it != s.end() && std::isdigit(*it)) ++it;
     return !s.empty() && it == s.end();
+}
+
+unsigned int getPriority(std::string operation) {
+    if (operation == "+" || operation == "-") return 1;
+    if (operation == "*" || operation == "/") return 2;
+    if (operation == "^") return 3;
 }
 
 class Parser {
