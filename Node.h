@@ -12,8 +12,20 @@ private:
     Node *rightNode;
     double number;
 public:
+    bool operator==(Node &n) {
+        if (this->isLeaf() && n.isLeaf() && this->number == n.number) return true;
+
+//        if (*this->leftNode == *n.leftNode && *this->rightNode == *n.rightNode) return true;
+
+        if (*this->leftNode == *n.rightNode && *this->rightNode == *n.leftNode) return true;
+
+        return false;
+    }
+
     Node(double n) {
         this->number = n;
+        this->leftNode = NULL;
+        this->rightNode = NULL;
     }
 
     Node(Node *l, std::string op, Node *r) {
@@ -41,8 +53,9 @@ public:
     }
 
     bool isLeaf() {
-        return this->number != NULL
-               && this->leftNode == NULL
+//        return true;
+
+        return this->leftNode == NULL
                && this->rightNode == NULL;
     }
 
