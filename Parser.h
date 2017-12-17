@@ -34,9 +34,9 @@ private:
                 continue;
             }
             if (is_number(l) || l == "." || ("-" == l && result.empty())) {
-                result += l;
+                result += l;position++;
             } else break;
-            position++;
+
         }
         l.erase();
 //        std::cout << "found token: " << result << std::endl;

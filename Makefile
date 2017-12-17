@@ -1,8 +1,17 @@
+.PHONY: all test clean build
+
+all: build run
+
+clean:
+	rm -f ./build/*
+
 build:
-	g++ -std=c++11 -o mathematics main.cpp
+	mkdir ./build/ || true
+	g++ -std=c++11 -o ./build/mathematics main.cpp
 
 run:
-	./mathematics
+	./build/mathematics
 
-test:
-	g++ -std=c++11 -o tests_parser_test tests/parser-test.cpp && ./tests_parser_test && rm -f ./tests_parser_test
+test: clean
+	mkdir ./build/ || true
+	g++ -std=c++11 -o ./build/tests_parser_test tests/parser-test.cpp && (./build/tests_parser_test || true)
