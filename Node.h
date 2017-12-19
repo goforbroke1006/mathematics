@@ -13,11 +13,14 @@ private:
     double number;
 public:
     bool operator==(Node &n) {
+        if (this == NULL) return false;
+        if (&n == NULL) return false;
+
         if (this->isLeaf() && n.isLeaf() && this->number == n.number) return true;
 
-//        if (*this->leftNode == *n.leftNode && *this->rightNode == *n.rightNode) return true;
+        if (*leftNode == *n.leftNode && *rightNode == *n.rightNode) return true;
 
-        if (*this->leftNode == *n.rightNode && *this->rightNode == *n.leftNode) return true;
+        if (*leftNode == *n.rightNode && *rightNode == *n.leftNode) return true;
 
         return false;
     }
@@ -55,8 +58,7 @@ public:
     bool isLeaf() {
 //        return true;
 
-        return this->leftNode == NULL
-               && this->rightNode == NULL;
+        return leftNode == NULL && rightNode == NULL;
     }
 
     double getResult() {

@@ -35,7 +35,8 @@ private:
                 continue;
             }
             if (is_number(l) || l == "." || ("-" == l && result.empty())) {
-                result += l;position++;
+                result += l;
+                position++;
             } else break;
 
         }
@@ -76,6 +77,8 @@ private:
     }
 
 public:
+    Parser() : expression(""), position(0) {}
+
     Parser(std::string expr) : expression(expr), position(0) {}
 
     ~Parser() {
@@ -110,6 +113,10 @@ public:
 //            this->position++;
 
         return 0.0;
+    }
+
+    Node *parse(std::string expr) {
+        return NULL;
     }
 };
 
