@@ -25,7 +25,7 @@ private:
     std::string expression;
     unsigned int position;
 
-    double getNextDouble() {
+    /*double getNextDouble() {
         std::string result;
         std::string l;
         while (position < this->expression.length()) {
@@ -41,11 +41,10 @@ private:
 
         }
         l.erase();
-//        std::cout << "found token: " << result << std::endl;
         return result.length() > 0 ? std::stod(result.c_str()) : 0.0;
-    }
+    }*/
 
-    std::string getNextOperation() {
+    /*std::string getNextOperation() {
         std::string result;
         std::string l;
         while (position < this->expression.length()) {
@@ -61,11 +60,10 @@ private:
             }
             position++;
         }
-//        std::cout << "found operator: " << result << std::endl;
         return result;
-    }
+    }*/
 
-    bool canReadNext(std::string str) {
+    /*bool canReadNext(std::string str) {
         int locPos = this->position;
         while (this->expression.substr(this->position, 1) == " ") this->position++;
         if (this->expression.substr(this->position, str.length()) == str) {
@@ -74,11 +72,9 @@ private:
         }
         this->position = locPos;
         return false;
-    }
+    }*/
 
 public:
-    Parser() : expression(""), position(0) {}
-
     Parser(std::string expr) : expression(expr), position(0) {}
 
     ~Parser() {
@@ -86,7 +82,7 @@ public:
         expression.shrink_to_fit();
     }
 
-    double calc() {
+    /*double calc() {
         double first = this->getNextDouble();
         std::string operation = this->getNextOperation();
         if (operation == "") return first;
@@ -107,15 +103,47 @@ public:
         else {
             std::cerr << "Unexpected operator \"" << operation << "\"" << std::endl;
         }
-
-
-//        if ()
-//            this->position++;
-
         return 0.0;
+    }*/
+
+    std::string getNextToken() {
+        std::string result;
+
+        std::string l;
+        while (position < this->expression.length()) {
+            l = this->expression.substr(position, 1);
+            if (" " == l) {
+                position++;
+                continue;
+            }
+            if (is_number(l)) {
+                result += l;
+                while (true) {
+                    position++;
+                    l = this->expression.substr(position, 1);
+                    if (is_number(l) || "." == l) {
+                        result += l;
+                    } else {
+                        break;
+                    }
+                }
+                break;
+            }
+            if ("(" == l || ")" == l
+                || "+" == l || "-" == l
+                || "*" == l || "/" == l
+                || "^" == l
+                    ) {
+                result += l;
+                position++;
+                break;
+            }
+            position++;
+        }
+        return result;
     }
 
-    Node *parse(std::string expr) {
+    Node *parse() {
         return NULL;
     }
 };

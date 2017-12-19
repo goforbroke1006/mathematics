@@ -7,7 +7,7 @@ int main() {
     std::string expression;
     std::cin >> expression;
 
-    std::cout << (new Parser())->parse(expression)->getResult() << std::endl;
+    std::cout << (new Parser(expression))->parse()->getResult() << std::endl;
 
     return 0;
 }
