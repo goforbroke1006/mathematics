@@ -3,7 +3,7 @@ project(mathematics)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Parser.h Node.h)
+set(SOURCE_FILES main.cpp Parser.h Node.h stdafx.h)
 add_executable(mathematics ${SOURCE_FILES})
 
 
